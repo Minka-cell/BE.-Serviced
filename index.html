@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BE. Serviced - Booking</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: Arial, sans-serif; background: #f5f5f5; padding: 20px; }
+        .container { max-width: 600px; margin: 0 auto; background: white; padding: 30px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        h1 { color: #333; margin-bottom: 20px; }
+        .form-group { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; color: #555; font-weight: bold; }
+        input, select, textarea { width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px; }
+        button { width: 100%; padding: 12px; background: #25d366; color: white; border: none; border-radius: 4px; font-weight: bold; cursor: pointer; }
+        button:hover { background: #20ba5a; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>BE. Serviced - Book Now</h1>
+        <form onsubmit="sendToWhatsApp(); return false;">
+            <div class="form-group">
+                <label>Name:</label>
+                <input type="text" placeholder="Your name" required>
+            </div>
+            <div class="form-group">
+                <label>Phone:</label>
+                <input type="tel" placeholder="Your phone number" required>
+            </div>
+            <div class="form-group">
+                <label>Address:</label>
+                <input type="text" placeholder="Service address" required>
+            </div>
+            <div class="form-group">
+                <label>Service Type:</label>
+                <select id="serviceType" required>
+                    <option value="">Select Service</option>
+                    <option value="cleaning">Cleaning</option>
+                    <option value="maintenance">Maintenance</option>
+                </select>
+            </div>
+            <button type="submit">Request Service via WhatsApp</button>
+        </form>
+    </div>
+
+    <script>
+        function sendToWhatsApp() {
+            let name = document.querySelectorAll('input[type="text"]')[0].value;
+            let phone = document.querySelectorAll('input[type="tel"]')[0].value;
+            let address = document.querySelectorAll('input[type="text"]')[1].value;
+            let service = document.getElementById("serviceType").value;
+
+            let message = "📩 *BE. Serviced Booking Request* %0A%0A";
+            message += "👤 Name: " + name + "%0A";
+            message += "📞 Phone: " + phone + "%0A";
+            message += "📍 Address: " + address + "%0A";
+            message += "🛠 Service: " + service + "%0A%0A";
+            message += "— Sent via BE. Serviced Website";
+
+            window.open(`https://wa.me/27694534921?text=${message}`, '_blank');
+        }
+    </script>
+</body>
+</html>
